@@ -3,6 +3,7 @@ from GarageDeamon.Loader import ActorLoader, SensorLoader
 from GarageDeamon.Logger import LogCreator
 import logging
 import RPi.GPIO as GPIO
+import time
 
 
 class GarageDeamon:
@@ -24,6 +25,8 @@ class GarageDeamon:
 
     def run(self):
         while True:
+            time.sleep(10)
+            self.actors['LocalDoor'].run()
             continue
 
 
