@@ -25,6 +25,9 @@ class SensorSample(SensorBase):
         self.set_state("Closed")
 
     def _setup(self):
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
+        
         GPIO.setup(self.pinDoorClosed, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self.pinDoorOpen, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
