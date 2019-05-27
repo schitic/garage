@@ -19,5 +19,4 @@ class LocalDoor(ActorBase):
     def run(self):
         GPIO.output(self.commandPin, False)
         time.sleep(2)
-        GPIO.output(self.commandPin, True
-
+        GPIO.output(self.commandPin, True)
