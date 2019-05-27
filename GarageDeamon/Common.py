@@ -101,7 +101,7 @@ class _DataBase(object):
                   "WHERE sensorName='%s'" % (sensor_value, sensor_name)
 
         else:
-            last_row_id = len(self.queryALL())
+            last_row_id = len(self.queryALL())+1
             if not last_row_id:
                 last_row_id = 1
             sql = 'INSERT INTO sensors VALUES(%s,\'%s\', \'%s\', \'%s\');' % (
