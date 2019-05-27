@@ -27,7 +27,6 @@ class SensorBase(object):
         if self.current_state is None:
             self.current_state = db_state
         elif self.current_state != db_state:
-            print(db_state, self.current_state)
             self.log.write("Changed Value: from %s to %s" %
                            (db_state, self.current_state),
                            "DBMERGE", component_id=self.sensor_name)
