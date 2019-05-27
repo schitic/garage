@@ -10,12 +10,17 @@ class SensorSample(SensorBase):
         self.pinDoorClosed = 20
         self.pinDoorOpen = 21
         self.log = LogCreator()
+        self._setup()
 
     def door_opened(self, _):
+        if self.current_state == "Opened":
+            return
         self.log("Door is Open", 'STAUTS', component_id=self.sensor_name)
         self.set_state("Opened")
 
     def door_closed(self, _):
+        if self.current_state == "Closed":
+            return
         self.log("Door is Closed", 'STAUTS', component_id=self.sensor_name)
         self.set_state("Closed")
 
