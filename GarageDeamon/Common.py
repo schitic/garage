@@ -88,6 +88,12 @@ class _DataBase(object):
         rows = cur.fetchall()
         return rows
 
+    def queryALL(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT sensorValue FROM sensors ")
+        rows = cur.fetchall()
+        return rows
+
     def insert_or_update(self, sensor_name, sensor_value):
         dtime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         if len(self.query(sensor_name)):
@@ -95,8 +101,7 @@ class _DataBase(object):
                   "WHERE sensorName='%s'" % (sensor_value, sensor_name)
 
         else:
-            cur = self.conn.cursor()
-            last_row_id = cur.lastrowid
+            last_row_id = len(self.queryALL())
             if not last_row_id:
                 last_row_id = 1
             sql = 'INSERT INTO sensors VALUES(%s,\'%s\', \'%s\', \'%s\');' % (
