@@ -5,7 +5,7 @@ import time
 
 class LocalDoor(ActorBase):
 
-    def __init__(self, outputPin=13):
+    def __init__(self, outputPin=23):
         self.commandPin = outputPin
         self._setup()
         super(LocalDoor, self).__init__()
