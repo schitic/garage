@@ -9,4 +9,4 @@ class CarSensorRight(CarSensorLeft):
                                              position=position)
 
     def _current_state(self):
-        return "Present"
+        return "Not present"

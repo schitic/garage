@@ -12,7 +12,7 @@ class CarSensorLeft(SensorBase):
         super(CarSensorLeft, self).__init__()
 
     def _current_state(self):
-        return "Not present"
+        return "Present"
 
     def car_present(self, _):
         if self.current_state == "Present":
