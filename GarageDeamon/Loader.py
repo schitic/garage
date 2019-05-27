@@ -40,6 +40,7 @@ class MainLoader(object):
 
     @staticmethod
     def get_subclass(module, base_class):
+        good_results = []
         for name in dir(module):
             obj = getattr(module, name)
             if name == base_class.__name__:
@@ -47,9 +48,11 @@ class MainLoader(object):
             try:
                 if issubclass(obj, base_class):
                     print name
-                    return obj
+                    good_results.append(obj)
             except TypeError:  # If 'obj' is not a class
                 pass
+        if good_results:
+            return good_results[-1]
         return None
 
     @staticmethod
