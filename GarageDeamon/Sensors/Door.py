@@ -12,8 +12,10 @@ class DoorSensor(SensorBase):
 
     def _current_state(self):
         if GPIO.input(self.pinDoorClosed):
+            print("CLOSED")
             self.current_state = "Closed"
         if GPIO.input(self.pinDoorOpen):
+            print("OPEN")
             self.current_state = "Opened"
 
     def door_opened(self, _):
