@@ -5,17 +5,16 @@ import RPi.GPIO as GPIO
 class DoorSensor(SensorBase):
 
     def __init__(self):
-        super(DoorSensor, self).__init__()
         self.pinDoorClosed = 20
         self.pinDoorOpen = 21
         self._setup()
+        super(DoorSensor, self).__init__()
 
     def _current_state(self):
         if GPIO.input(self.pinDoorClosed):
             self.current_state = "Closed"
         if GPIO.input(self.pinDoorOpen):
             self.current_state = "Opened"
-
 
     def door_opened(self, _):
         if self.current_state == "Opened":
