@@ -27,10 +27,13 @@ class SensorSample(SensorBase):
     def _setup(self):
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
-        
+
         GPIO.setup(self.pinDoorClosed, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self.pinDoorOpen, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+        GPIO.add_event_detect(self.pinDoorClosed, GPIO.RISING)
+        GPIO.add_event_detect(self.pinDoorOpen, GPIO.RISING)
+        
         # Callback functions
         GPIO.add_event_callback(self.pinDoorClosed, self.door_closed)
         GPIO.add_event_callback(self.pinDoorOpen, self.door_opened)
