@@ -46,6 +46,7 @@ class MainLoader(object):
                 continue
             try:
                 if issubclass(obj, base_class):
+                    print name
                     return obj
             except TypeError:  # If 'obj' is not a class
                 pass
