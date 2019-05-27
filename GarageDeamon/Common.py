@@ -18,6 +18,10 @@ class SensorBase(object):
     def get_state(self):
         return self.current_state
 
+    def set_state(self, value):
+        self.current_state = value
+        self._set_state()
+
     def _merge_state(self):
         db_state = Utils.get_state(self.sensor_name)
         if self.current_state is None:

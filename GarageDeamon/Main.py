@@ -2,12 +2,15 @@
 from GarageDeamon.Loader import ActorLoader, SensorLoader
 from GarageDeamon.Logger import LogCreator
 import logging
+import RPi.GPIO as GPIO
 
 
 class GarageDeamon:
     def __init__(self):
         # Start logging
         self.log = LogCreator()
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
 
         # Load the sensors
         self.sensors = SensorLoader.get_modules()

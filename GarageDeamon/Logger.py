@@ -8,6 +8,7 @@ import logging
 
 _logger = None
 
+
 def LogCreator(logFilename=None):
     global _logger
     if _logger is None:
@@ -31,8 +32,6 @@ class LogCreatorSingleton:
         self.log = logging.getLogger()
 
     def write(self, line, status, component_id=None):
-        # Log to stdout
-
         # Format message
         date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         if component_id is None:
