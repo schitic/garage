@@ -12,7 +12,7 @@ class SensorBase(object):
             self.sensor_name = self.__class__.__name__
         self.log = LogCreator()
         self.log.write("", "INIT", component_id=self.sensor_name)
-        self.current_state = None
+        self.current_state = self._current_state()
         self._merge_state()
 
     def get_state(self):
