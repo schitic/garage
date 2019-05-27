@@ -7,16 +7,12 @@ class LocalDoor(ActorBase):
 
     def __init__(self, outputPin=24):
         self.commandPin = outputPin
-        self._setup()
         super(LocalDoor, self).__init__()
 
-    def _setup(self):
+    def run(self):
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
-
         GPIO.setup(self.commandPin, GPIO.OUT)
-
-    def run(self):
         GPIO.output(self.commandPin, False)
         time.sleep(2)
-        GPIO.output(self.commandPin, True)
+        GPIO.cleanup(self.commandPin)
