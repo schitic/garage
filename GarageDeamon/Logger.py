@@ -42,7 +42,6 @@ class LogCreatorSingleton:
             file_line = '[%s] [%s-%s] %s' % (date_now, status, component_id,
                                              line)
             self.log.info('[%s-%s] %s' % (status, component_id, line))
-            print(file_line)
 
         # Append \n for file if there isn't any
         if file_line[-1] != '\n':

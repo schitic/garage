@@ -48,19 +48,18 @@ class ActorBase(object):
 
 
 class Utils(object):
-    db = None
 
     @staticmethod
     def save_state(sensor_name, sensor_value):
-        if Utils.db is None:
-            Utils.db = _DataBase()
-        Utils.db.insert_or_update(sensor_name, sensor_value)
+        db = _DataBase()
+        db.insert_or_update(sensor_name, sensor_value)
+        db.close()
 
     @staticmethod
     def get_state(sensor_name):
-        if Utils.db is None:
-            Utils.db = _DataBase()
-        rows = Utils.db.query(sensor_name)
+        db = _DataBase()
+        rows = db.query(sensor_name)
+        db.close()
         if rows:
             return rows[0][0]
         return None
@@ -71,6 +70,9 @@ class _DataBase(object):
     def __init__(self):
         self.conn = sqlite3.connect('garage.db')
         self._create_table()
+
+    def close(self):
+        self.conn.close()
 
     def _create_table(self):
         sql = 'create table if not exists sensors ' \

@@ -3,10 +3,10 @@ import RPi.GPIO as GPIO
 from GarageDeamon.Logger import LogCreator
 
 
-class SensorSample(SensorBase):
+class DoorSensor(SensorBase):
 
     def __init__(self):
-        super(SensorSample, self).__init__()
+        super(DoorSensor, self).__init__()
         self.pinDoorClosed = 20
         self.pinDoorOpen = 21
         self.log = LogCreator()
