@@ -91,8 +91,8 @@ class _DataBase(object):
     def insert_or_update(self, sensor_name, sensor_value):
         dtime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         if len(self.query(sensor_name)):
-            sql = "UPDATE sensors SET sensor_value='%s' " \
-                  "WHERE sensor_name='%s'" % (sensor_value, sensor_name)
+            sql = "UPDATE sensors SET sensorValue='%s' " \
+                  "WHERE sensorName='%s'" % (sensor_value, sensor_name)
 
         else:
             cur = self.conn.cursor()
