@@ -15,13 +15,13 @@ class SensorSample(SensorBase):
     def door_opened(self, _):
         if self.current_state == "Opened":
             return
-        self.log("Door is Open", 'STAUTS', component_id=self.sensor_name)
+        self.log.write("Door is Open", 'STAUTS', component_id=self.sensor_name)
         self.set_state("Opened")
 
     def door_closed(self, _):
         if self.current_state == "Closed":
             return
-        self.log("Door is Closed", 'STAUTS', component_id=self.sensor_name)
+        self.log.write("Door is Closed", 'STAUTS', component_id=self.sensor_name)
         self.set_state("Closed")
 
     def _setup(self):
@@ -33,7 +33,7 @@ class SensorSample(SensorBase):
 
         GPIO.add_event_detect(self.pinDoorClosed, GPIO.RISING)
         GPIO.add_event_detect(self.pinDoorOpen, GPIO.RISING)
-        
+
         # Callback functions
         GPIO.add_event_callback(self.pinDoorClosed, self.door_closed)
         GPIO.add_event_callback(self.pinDoorOpen, self.door_opened)
