@@ -103,6 +103,7 @@ class _DataBase(object):
                 sensor_value,
                 dtime
             )
+        print(sql)
         self.conn.execute(sql)
         self.conn.commit()
 
