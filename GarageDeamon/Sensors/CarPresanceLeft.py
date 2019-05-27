@@ -8,6 +8,7 @@ class CarSensorLeft(SensorBase):
         self.pinLedRed = ledRed
         self.pinLedGreed = ledGreed
         self.position = position
+        print(position)
         self._setup()
         super(CarSensorLeft, self).__init__()
 
