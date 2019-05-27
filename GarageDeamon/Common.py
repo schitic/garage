@@ -97,6 +97,8 @@ class _DataBase(object):
         else:
             cur = self.conn.cursor()
             last_row_id = cur.lastrowid
+            if not last_row_id:
+                last_row_id = 1
             sql = 'INSERT INTO sensors VALUES(%s,\'%s\', \'%s\', \'%s\');' % (
                 last_row_id,
                 sensor_name,
