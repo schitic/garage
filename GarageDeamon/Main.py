@@ -26,8 +26,8 @@ class GarageDeamon:
     def run(self):
         while True:
             time.sleep(10)
-            print("AICI")
             self.actors['LocalDoor'].run()
+            self.actors['BuildingDoor'].run()
             continue
 
 
