@@ -22,8 +22,13 @@ class GarageDeamon:
         for actor in self.actors.keys():
             self.log.write('Sensor: %s' % actor, 'Loaded')
 
+    def run(self):
+        while True:
+            continue
+
 
 if __name__ == '__main__':
     logging.basicConfig(format="%(levelname)-8s: %(message)s")
     logging.getLogger().setLevel(logging.INFO)
-    GarageDeamon()
+    garage = GarageDeamon()
+    garage.run()
