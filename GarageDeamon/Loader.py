@@ -66,7 +66,7 @@ class MainLoader(object):
             except TypeError:  # If 'obj' is not a class
                 pass
         if good_results:
-            return MainLoader._best_subclass_fit(good_results)
+            return MainLoader._best_subclass_fit(good_results)[0]
         return None
 
     @staticmethod
