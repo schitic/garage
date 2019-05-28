@@ -53,6 +53,8 @@ class CarSensorLeft(SensorBase):
                 zMag -= 65536
 
             # Output data
+            if self.position=='right':
+                return
             print "%s X: %d Y: %d Z: %d" % (self.position, xMag, yMag, zMag)
 
 
