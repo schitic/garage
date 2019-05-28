@@ -8,8 +8,10 @@ class CarSensorLeft(SensorBase):
         self.pinLedRed = ledRed
         self.pinLedGreed = ledGreed
         self.position = position
-        self._setup()
         super(CarSensorLeft, self).__init__()
+
+    def run(self):
+        self._setup()
 
     def _current_state(self):
         return "Present"

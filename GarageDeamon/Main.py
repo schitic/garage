@@ -2,32 +2,26 @@
 from GarageDeamon.Loader import ActorLoader, SensorLoader
 from GarageDeamon.Logger import LogCreator
 import logging
-import RPi.GPIO as GPIO
-import time
 
 
 class GarageDeamon:
     def __init__(self):
         # Start logging
         self.log = LogCreator()
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setwarnings(False)
 
         # Load the sensors
         self.sensors = SensorLoader.get_modules()
         for sensor in self.sensors.keys():
             self.log.write('Sensor: %s' % sensor, 'Loaded')
+            self.sensors[sensor].run()
 
         # Load the actors
         self.actors = ActorLoader.get_modules()
         for actor in self.actors.keys():
-            self.log.write('Sensor: %s' % actor, 'Loaded')
+            self.log.write('Actors: %s' % actor, 'Loaded')
 
     def run(self):
         while True:
-            time.sleep(10)
-            #self.actors['LocalDoor'].run()
-            self.actors['BuildingDoor'].run()
             continue
 
 

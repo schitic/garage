@@ -10,9 +10,10 @@ class LocalDoor(ActorBase):
         super(LocalDoor, self).__init__()
 
     def run(self):
-        print(self.commandPin)
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
+        self.log.write("Sent command", 'ACTION',
+                       component_id=self.actor_name)
         GPIO.setup(self.commandPin, GPIO.OUT)
         GPIO.output(self.commandPin, False)
         time.sleep(2)

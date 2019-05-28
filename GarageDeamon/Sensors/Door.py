@@ -7,8 +7,10 @@ class DoorSensor(SensorBase):
     def __init__(self):
         self.pinDoorClosed = 20
         self.pinDoorOpen = 21
-        self._setup()
         super(DoorSensor, self).__init__()
+
+    def run(self):
+        self._setup()
 
     def _current_state(self):
         if GPIO.input(self.pinDoorClosed):

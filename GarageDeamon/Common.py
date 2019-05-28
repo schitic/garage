@@ -45,6 +45,8 @@ class ActorBase(object):
             self.actor_name = actor_name
         else:
             self.actor_name = self.__class__.__name__
+        self.log = LogCreator()
+        self.log.write("", "INIT", component_id=self.actor_name)
 
 
 class Utils(object):
