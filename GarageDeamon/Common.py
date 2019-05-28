@@ -1,7 +1,7 @@
 import sqlite3
 from datetime import datetime
 from GarageDeamon.Logger import LogCreator
-
+import os
 
 class SensorBase(object):
 
@@ -77,7 +77,9 @@ class Utils(object):
 class _DataBase(object):
 
     def __init__(self):
-        self.conn = sqlite3.connect('garage.db')
+        self.db_path = os.path.join(os.environ.get('GARAGE_DB', './'),
+                                    'garage.db')
+        self.conn = sqlite3.connect(self.db_path)
         self._create_table()
 
     def close(self):
