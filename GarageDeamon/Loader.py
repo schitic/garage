@@ -39,6 +39,20 @@ class MainLoader(object):
             self.plugins[module] = cls()
 
     @staticmethod
+    def _best_subclass_fit(results):
+        subclass_map = {}
+        for res in results:
+            subclass_map[res] = 0
+        for key in subclass_map.keys():
+            for res in results:
+                try:
+                    if issubclass(key, res):
+                        subclass_map[key] += 1
+                except TypeError:  # If 'obj' is not a class
+                    pass
+        print subclass_map
+
+    @staticmethod
     def get_subclass(module, base_class):
         good_results = []
         for name in dir(module):
@@ -50,9 +64,7 @@ class MainLoader(object):
                     good_results.append(obj)
             except TypeError:  # If 'obj' is not a class
                 pass
-        for res in good_results:
-            print res
-
+        MainLoader._best_subclass_fit(good_results)
         print "+++++++++"
         if good_results:
             return good_results[-1]
