@@ -36,6 +36,7 @@ class CarSensorLeft(SensorBase):
         t.join()
 
     def close(self):
+        print("IJN")
         self._is_running = False
 
     def _current_state(self):

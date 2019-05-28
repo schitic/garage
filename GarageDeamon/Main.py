@@ -26,6 +26,7 @@ class GarageDeamon:
             self.log.write('Actors: %s' % actor, 'Loaded')
 
     def sigint_handler(self, signal, frame):
+        print("AICI")
         for sensor in self.sensors.keys():
             self.sensors[sensor].close()
 
@@ -34,6 +35,7 @@ class GarageDeamon:
             while True:
                 continue
         except KeyboardInterrupt:
+            print("ACOLO")
             for sensor in self.sensors.keys():
                 self.sensors[sensor].close()
                 return
