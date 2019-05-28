@@ -30,13 +30,8 @@ class GarageDeamon:
             self.sensors[sensor].close()
 
     def run(self):
-        try:
-            while True:
-                continue
-        except KeyboardInterrupt:
-            for sensor in self.sensors.keys():
-                self.sensors[sensor].close()
-                return
+        while True:
+            continue
 
 
 if __name__ == '__main__':
