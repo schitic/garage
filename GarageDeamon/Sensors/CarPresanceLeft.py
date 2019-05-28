@@ -74,7 +74,7 @@ class CarSensorLeft(SensorBase):
     def _current_state(self):
         return "Unknown"
 
-    def car_present(self, _):
+    def car_present(self):
         if self.current_state == "Present":
             return
         GPIO.output(self.pinLedGreed, True)
@@ -84,7 +84,7 @@ class CarSensorLeft(SensorBase):
                        component_id=self.sensor_name)
         self.set_state("Present")
 
-    def car_absent(self, _):
+    def car_absent(self,):
         if self.current_state == "Not present":
             return
         GPIO.output(self.pinLedGreed, False)
