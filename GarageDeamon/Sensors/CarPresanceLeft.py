@@ -56,6 +56,7 @@ class CarSensorLeft(SensorBase):
             print "X-Axis : %d" % xMag
             print "Y-Axis : %d" % yMag
             print "Z-Axis : %d" % zMag
+            print "=========================="
 
     def run(self):
         self._setup()
