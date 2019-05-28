@@ -4,6 +4,7 @@ import os
 import inspect
 from django.shortcuts import render
 from GarageDeamon.Loader import ActorLoader, SensorLoader
+from django.contrib.sites.shortcuts import get_current_site
 
 
 def index(request):
@@ -63,12 +64,13 @@ def rest_actor(request, actor_name):
 def rest_list(request):
     sensors = SensorLoader.get_modules()
     results = []
+    url_base = request.get_full_path()
     for sensor in sensors.keys():
         results.append({
             'sensor_name': sensor,
             'type': 'sensor',
             'config': _get_config(sensors[sensor]),
-            'url': '/rest/sensors/%s/' % sensor
+            'url': '%s/rest/sensors/%s/' % (url_base, sensor)
         })
     actors = ActorLoader.get_modules()
     for actor in actors.keys():
@@ -76,7 +78,7 @@ def rest_list(request):
             'sensor_name': actor,
             'type': 'actor',
             'config': _get_config(actors[actor]),
-            'url': '/rest/actors/%s/' % actor
+            'url': '%s/rest/actor/%s/' % (url_base, actor)
 
         })
     return HttpResponse(json.dumps(results),
