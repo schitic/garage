@@ -1,13 +1,14 @@
 from GarageDeamon.Common import SensorBase
 import RPi.GPIO as GPIO
-
+import threading
 
 class CarSensorLeft(SensorBase):
 
-    def __init__(self, ledRed=13, ledGreed=6, position="left"):
+    def __init__(self, ledRed=13, ledGreed=6, busI2C=3, position="left"):
         self.pinLedRed = ledRed
         self.pinLedGreed = ledGreed
         self.position = position
+        self.busI2C = busI2C
         super(CarSensorLeft, self).__init__()
 
     def html_hook(self):
@@ -19,8 +20,16 @@ class CarSensorLeft(SensorBase):
                '</div>' % (status, self.sensor_name, self.get_db_state())
         return html
 
+    def _listener(self):
+        print 'Worker'
+        return
+
     def run(self):
         self._setup()
+        t = threading.Thread(target=self._listener)
+        t.setDaemon(True)
+        t.start()
+        t.join()
 
     def _current_state(self):
         return "Present"
