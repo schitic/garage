@@ -65,7 +65,7 @@ def rest_list(request):
     sensors = SensorLoader.get_modules()
     results = []
     url_base = request.build_absolute_uri()
-    url_base = url_base.replace('/rest/list', '')
+    url_base = url_base.replace('/rest/list/', '')
     for sensor in sensors.keys():
         results.append({
             'sensor_name': sensor,
