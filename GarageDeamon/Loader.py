@@ -47,10 +47,13 @@ class MainLoader(object):
                 continue
             try:
                 if issubclass(obj, base_class):
-                    print obj
                     good_results.append(obj)
             except TypeError:  # If 'obj' is not a class
                 pass
+        for res in good_results:
+            print res
+
+        print "+++++++++"
         if good_results:
             return good_results[-1]
         return None
