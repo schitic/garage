@@ -28,6 +28,7 @@ class GarageDeamon:
     def sigint_handler(self, signal, frame):
         for sensor in self.sensors.keys():
             self.sensors[sensor].close()
+        sys.exit(0)
 
     def run(self):
         while True:
