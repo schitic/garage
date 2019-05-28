@@ -31,7 +31,6 @@ class CarSensorLeft(SensorBase):
         self._setup()
         self._is_running = True
         t = threading.Thread(target=self._listener)
-        t.setDaemon(True)
         t.start()
         t.join()
 
