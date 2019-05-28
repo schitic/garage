@@ -10,6 +10,7 @@ class LocalDoor(ActorBase):
         super(LocalDoor, self).__init__()
 
     def run(self):
+        print(self.commandPin)
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
         GPIO.setup(self.commandPin, GPIO.OUT)
