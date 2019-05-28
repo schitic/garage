@@ -2,7 +2,7 @@
 from GarageDeamon.Loader import ActorLoader, SensorLoader
 from GarageDeamon.Logger import LogCreator
 import logging
-
+import RPi.GPIO as GPIO
 import signal
 import sys
 
@@ -28,6 +28,7 @@ class GarageDeamon:
     def sigint_handler(self, signal, frame):
         for sensor in self.sensors.keys():
             self.sensors[sensor].close()
+        GPIO.cleanup()
         sys.exit(0)
 
     def run(self):

@@ -56,7 +56,7 @@ class CarSensorLeft(SensorBase):
             # Output data
             # if self.position=='right':
             #    return
-            # print "%s X: %d Y: %d Z: %d" % (self.position, xMag, yMag, zMag)
+            print "%s X: %d Y: %d Z: %d" % (self.position, xMag, yMag, zMag)
             if zMag < self.limit_no_car:
                 self.car_present()
             else:
@@ -75,20 +75,20 @@ class CarSensorLeft(SensorBase):
         return "Unknown"
 
     def car_present(self):
-        if self.current_state == "Present":
-            return
+
         GPIO.output(self.pinLedGreed, True)
         GPIO.output(self.pinLedRed, False)
-
+        if self.current_state == "Present":
+            return
         self.log.write("Car %s is Present" % self.position, 'STAUTS',
                        component_id=self.sensor_name)
         self.set_state("Present")
 
     def car_absent(self,):
-        if self.current_state == "Not present":
-            return
         GPIO.output(self.pinLedGreed, False)
         GPIO.output(self.pinLedRed, True)
+        if self.current_state == "Not present":
+            return
         self.log.write("Car %s is Present" % self.position, 'STAUTS',
                        component_id=self.sensor_name)
         self.set_state("Not present")
