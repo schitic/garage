@@ -12,6 +12,7 @@ class CarSensorLeft(SensorBase):
         self.pinLedGreed = ledGreed
         self.position = position
         self.busI2C = busI2C
+        self.limit_no_car = 1300
         self._is_running = False
         super(CarSensorLeft, self).__init__()
 
@@ -53,10 +54,13 @@ class CarSensorLeft(SensorBase):
                 zMag -= 65536
 
             # Output data
-            if self.position=='right':
-                return
-            print "%s X: %d Y: %d Z: %d" % (self.position, xMag, yMag, zMag)
-
+            # if self.position=='right':
+            #    return
+            # print "%s X: %d Y: %d Z: %d" % (self.position, xMag, yMag, zMag)
+            if zMag < self.limit_no_car:
+                self.car_present()
+            else:
+                self.car_absent()
 
     def run(self):
         self._setup()
@@ -68,7 +72,7 @@ class CarSensorLeft(SensorBase):
         self._is_running = False
 
     def _current_state(self):
-        return "Present"
+        return "Unknown"
 
     def car_present(self, _):
         if self.current_state == "Present":
