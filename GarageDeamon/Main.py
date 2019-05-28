@@ -28,6 +28,7 @@ class GarageDeamon:
     def sigint_handler(self, signal, frame):
         for sensor in self.sensors.keys():
             self.sensors[sensor].close()
+        GPIO.setmode(GPIO.BCM)
         GPIO.cleanup()
         sys.exit(0)
 

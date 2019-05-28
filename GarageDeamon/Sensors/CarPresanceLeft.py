@@ -7,12 +7,13 @@ import smbus
 
 class CarSensorLeft(SensorBase):
 
-    def __init__(self, ledRed=13, ledGreed=6, busI2C=3, position="left"):
+    def __init__(self, ledRed=13, ledGreed=6, busI2C=3, limit_no_car=1200,
+                 position="left"):
         self.pinLedRed = ledRed
         self.pinLedGreed = ledGreed
         self.position = position
         self.busI2C = busI2C
-        self.limit_no_car = 1300
+        self.limit_no_car = limit_no_car
         self._is_running = False
         super(CarSensorLeft, self).__init__()
 
