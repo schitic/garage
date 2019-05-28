@@ -2,7 +2,6 @@ from GarageDeamon.Common import SensorBase
 import RPi.GPIO as GPIO
 import threading
 import time
-import signal
 
 class CarSensorLeft(SensorBase):
 
@@ -28,18 +27,14 @@ class CarSensorLeft(SensorBase):
             print "Worker"
             time.sleep(1)
 
-    def sigint_handler(self, signal, frame):
-        self.close()
-
     def run(self):
-        signal.signal(signal.SIGINT, self.sigint_handler)
         self._setup()
         self._is_running = True
         t = threading.Thread(target=self._listener)
         t.start()
 
     def close(self):
-        print("IJN")
+        print("IJN" + self._is_running)
         self._is_running = False
 
     def _current_state(self):
