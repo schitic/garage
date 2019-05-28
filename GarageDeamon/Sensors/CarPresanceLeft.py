@@ -37,7 +37,6 @@ class CarSensorLeft(SensorBase):
         self._is_running = True
         t = threading.Thread(target=self._listener)
         t.start()
-        t.join()
 
     def close(self):
         print("IJN")
