@@ -1,7 +1,7 @@
 from GarageDeamon.Common import SensorBase
 import RPi.GPIO as GPIO
 import threading
-
+import time
 
 class CarSensorLeft(SensorBase):
 
@@ -25,6 +25,7 @@ class CarSensorLeft(SensorBase):
     def _listener(self):
         while self._is_running:
             print "Worker"
+            time.sleep(1)
 
     def run(self):
         self._setup()
