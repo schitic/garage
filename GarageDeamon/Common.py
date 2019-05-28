@@ -45,6 +45,9 @@ class SensorBase(object):
     def html_hook(self):
         return ""
 
+    def close(self):
+        pass
+
 
 class ActorBase(object):
     def __init__(self, actor_name=None):

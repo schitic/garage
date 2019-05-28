@@ -21,8 +21,13 @@ class GarageDeamon:
             self.log.write('Actors: %s' % actor, 'Loaded')
 
     def run(self):
-        while True:
-            continue
+        try:
+            while True:
+                continue
+        except KeyboardInterrupt:
+            for sensor in self.sensors.keys():
+                self.sensors[sensor].close()
+                return
 
 
 if __name__ == '__main__':

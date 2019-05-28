@@ -2,6 +2,7 @@ from GarageDeamon.Common import SensorBase
 import RPi.GPIO as GPIO
 import threading
 
+
 class CarSensorLeft(SensorBase):
 
     def __init__(self, ledRed=13, ledGreed=6, busI2C=3, position="left"):
@@ -9,6 +10,7 @@ class CarSensorLeft(SensorBase):
         self.pinLedGreed = ledGreed
         self.position = position
         self.busI2C = busI2C
+        self._is_running = False
         super(CarSensorLeft, self).__init__()
 
     def html_hook(self):
@@ -21,15 +23,19 @@ class CarSensorLeft(SensorBase):
         return html
 
     def _listener(self):
-        print 'Worker'
-        return
+        while self._is_running:
+            print "Worker"
 
     def run(self):
         self._setup()
+        self._is_running = True
         t = threading.Thread(target=self._listener)
         t.setDaemon(True)
         t.start()
         t.join()
+
+    def close(self):
+        self._is_running = False
 
     def _current_state(self):
         return "Present"
