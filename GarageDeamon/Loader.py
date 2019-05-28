@@ -7,7 +7,7 @@ Module that allows to load all the actors and sensors
 
 import os
 from GarageDeamon.Common import SensorBase, ActorBase
-
+import operator
 
 class MainLoader(object):
 
@@ -50,7 +50,8 @@ class MainLoader(object):
                         subclass_map[key] += 1
                 except TypeError:  # If 'obj' is not a class
                     pass
-        print subclass_map
+        res = sorted(subclass_map.items(), key=operator.itemgetter(1))
+        return res[-1]
 
     @staticmethod
     def get_subclass(module, base_class):
@@ -64,10 +65,8 @@ class MainLoader(object):
                     good_results.append(obj)
             except TypeError:  # If 'obj' is not a class
                 pass
-        MainLoader._best_subclass_fit(good_results)
-        print "+++++++++"
         if good_results:
-            return good_results[-1]
+            return MainLoader._best_subclass_fit(good_results)
         return None
 
     @staticmethod
