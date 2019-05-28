@@ -16,6 +16,20 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from webapp import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^rest/actors/(?P<actor_name>[\w-]*)/$',
+        views.rest_actor),
+    url(r'^rest/sensors/(?P<sensor_name>[\w-]*)/$',
+        views.rest_sensor),
+    url(r'^rest/sensors/$',
+        views.rest_sensor),
+    url(r'^rest/list/$',
+        views.rest_list),
+    url(r'^logs/$',
+        views.logs),
+    url(r'^$', views.index),
+
 ]

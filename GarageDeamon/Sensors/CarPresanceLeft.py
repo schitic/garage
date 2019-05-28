@@ -10,6 +10,15 @@ class CarSensorLeft(SensorBase):
         self.position = position
         super(CarSensorLeft, self).__init__()
 
+    def html_hook(self):
+        status = 'led-red'
+        if self.get_db_state() == 'Present':
+            status = 'led-green'
+        html = '<div class="led-box"><div class="%s">' \
+               '</div><p><strong>%s</strong> - %s</p>' \
+               '</div>' % (status, self.sensor_name, self.get_db_state())
+        return html
+
     def run(self):
         self._setup()
 

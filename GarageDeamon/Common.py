@@ -11,18 +11,22 @@ class SensorBase(object):
         else:
             self.sensor_name = self.__class__.__name__
         self.log = LogCreator()
-        self.log.write("", "INIT", component_id=self.sensor_name)
         self.current_state = self._current_state()
         self._merge_state()
 
     def get_state(self):
         return self.current_state
 
+    def get_db_state(self):
+        db_state = Utils.get_state(self.sensor_name)
+        return db_state
+
     def set_state(self, value):
         self.current_state = value
         self._set_state()
 
     def _merge_state(self):
+        self.log.write("", "INIT", component_id=self.sensor_name)
         db_state = Utils.get_state(self.sensor_name)
         if self.current_state is None:
             self.current_state = db_state
@@ -37,6 +41,9 @@ class SensorBase(object):
             self.log.write("Value: %s" % self.current_state,
                            "DBSAVE", component_id=self.sensor_name)
             Utils.save_state(self.sensor_name, self.current_state)
+
+    def html_hook(self):
+        return ""
 
 
 class ActorBase(object):

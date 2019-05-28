@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Sensors</h1>
+<hr/>
+<div>
+{% for sensor in sensors %}
+{{ sensor|safe }}
+{% endfor %}
+</div>
+<div style="clear:both"></div>
+<br/><br/>
+<h1>Actors</h1>
+<hr/>
+<br/>
+{% for actor in actors %}
+<div class="col-lg-4">
+    <a href="#" onclick="execute('{{actor}}')" class="btn btn-info" style="width: 150px; height: 150px; padding-top:70px">{{actor}}</a>
+</div>
+{% endfor %}
+
+<script>
+    function  execute(actor) {
+    $.ajax({
+        url: '/rest/actors/' + actor + '/',
+        method: 'GET',
+        cache: false,
+        success: function (data) {
+
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert("Error in sending command to " + actor+ '\n' + thrownError + '\n' + xhr.responseText )
+        }
+    });
+
+
+    }
+</script>
+
+{% endblock %}

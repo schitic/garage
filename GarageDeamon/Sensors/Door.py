@@ -13,10 +13,22 @@ class DoorSensor(SensorBase):
         self._setup()
 
     def _current_state(self):
-        if GPIO.input(self.pinDoorClosed):
-            return "Closed"
-        if GPIO.input(self.pinDoorOpen):
-            return "Opened"
+        try:
+            if GPIO.input(self.pinDoorClosed):
+                return "Closed"
+            if GPIO.input(self.pinDoorOpen):
+                return "Opened"
+        except Exception as _:
+            pass
+
+    def html_hook(self):
+        status = 'led-yellow'
+        if self.get_db_state() == 'Opened':
+            status = 'led-blue'
+        html = '<div class="led-box"><div class="%s">' \
+               '</div><p><strong>%s</strong> - %s</p>' \
+               '</div>' % (status, self.sensor_name, self.get_db_state())
+        return html
 
     def door_opened(self, _):
         if self.current_state == "Opened":

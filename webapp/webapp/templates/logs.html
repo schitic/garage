@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <div class="lead">
+        {% for line in lines %}
+            {{ line }}<br/>
+        {% endfor %}
+    </div>
+<meta http-equiv="refresh" content="5;URL=/logs/">
+
+
+{% endblock %}
