@@ -25,7 +25,7 @@ class CarSensorLeft(SensorBase):
         return html
 
     def _listener(self):
-        bus3 = smbus.SMBus(3)
+        bus3 = smbus.SMBus(self.busI2C)
         delay = 0.5
 
         # MAG3110 I2C address 0x0E
@@ -53,10 +53,8 @@ class CarSensorLeft(SensorBase):
                 zMag -= 65536
 
             # Output data
-            print "X-Axis : %d" % xMag
-            print "Y-Axis : %d" % yMag
-            print "Z-Axis : %d" % zMag
-            print "=========================="
+            print "%s X: %d Y: %d Z: %d" % (self.position, xMag, yMag, zMag)
+
 
     def run(self):
         self._setup()
