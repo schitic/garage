@@ -11,5 +11,3 @@ class CarSensorRight(CarSensorLeft):
                                              position=position,
                                              limit_no_car=limit_no_car)
 
-    def _current_state(self):
-        return "Not present"
