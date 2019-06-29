@@ -15,7 +15,7 @@ class LocalDoor(ActorBase):
 
     def run(self):
         GPIO.setmode(GPIO.BCM)
-        if self.obsacole
+        if self.obsacole:
             self.log.write("Canceled action on door", 'STAUTS',
                            component_id="LocalDoor")
         GPIO.setwarnings(False)
