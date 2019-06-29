@@ -8,7 +8,7 @@ class LocalDoor(ActorBase):
     def __init__(self, outputPin=24, local=True):
         self.commandPin = outputPin
         if local:
-            self.pinDoorBlock = 10
+            self.pinDoorBlock = 11
             self._setup()
         super(LocalDoor, self).__init__()
 
