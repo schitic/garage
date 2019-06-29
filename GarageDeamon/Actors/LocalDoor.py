@@ -23,6 +23,7 @@ class LocalDoor(ActorBase):
         GPIO.cleanup(self.commandPin)
 
     def obstacoleDetected(self):
+        print("toto")
         try:
             if GPIO.input(self.pinDoorClosed):
                 self.obsacole = True
@@ -33,7 +34,7 @@ class LocalDoor(ActorBase):
                 self.log.write("Obstacle NOT detected", 'STAUTS',
                                component_id="LocalDoor")
         except Exception as _:
-            pass
+            print("Eroare")
 
     def _setup(self):
         GPIO.setmode(GPIO.BCM)
