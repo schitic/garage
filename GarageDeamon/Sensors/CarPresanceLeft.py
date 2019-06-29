@@ -57,7 +57,7 @@ class CarSensorLeft(SensorBase):
             # Output data
             # if self.position=='right':
             #    return
-            print "%s X: %d Y: %d Z: %d" % (self.position, xMag, yMag, zMag)
+                print "%s X: %d Y: %d Z: %d" % (self.position, xMag, yMag, zMag)
             if zMag < self.limit_no_car:
                 self.car_present()
             else:

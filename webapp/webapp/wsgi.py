@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
+os.environ.setdefault("GARAGE_LOG", "/home/pi/garage.log")
+os.environ.setdefault("GARAGE_DB", "/home/pi/db/")
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "webapp.settings")
 
