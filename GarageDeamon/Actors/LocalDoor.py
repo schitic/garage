@@ -10,10 +10,14 @@ class LocalDoor(ActorBase):
         if local:
             self.pinDoorBlock = 11
             self._setup()
+        self.obsacole = False
         super(LocalDoor, self).__init__()
 
     def run(self):
         GPIO.setmode(GPIO.BCM)
+        if self.obsacole
+            self.log.write("Canceled action on door", 'STAUTS',
+                           component_id="LocalDoor")
         GPIO.setwarnings(False)
         self.log.write("Sent command", 'ACTION',
                        component_id=self.actor_name)
@@ -23,18 +27,17 @@ class LocalDoor(ActorBase):
         GPIO.cleanup(self.commandPin)
 
     def obstacoleDetected(self, _):
-        print("toto")
         try:
             if GPIO.input(self.pinDoorBlock):
-                self.obsacole = True
-                self.log.write("Obstacle detected", 'STAUTS',
-                               component_id="LocalDoor")
-            else:
                 self.obsacole = False
                 self.log.write("Obstacle NOT detected", 'STAUTS',
                                component_id="LocalDoor")
+            else:
+                self.obsacole = True
+                self.log.write("Obstacle detected", 'STAUTS',
+                               component_id="LocalDoor")
         except Exception as _:
-            print("Eroare")
+            pass
 
     def _setup(self):
         GPIO.setmode(GPIO.BCM)
@@ -46,4 +49,3 @@ class LocalDoor(ActorBase):
 
         # Callback functions
         GPIO.add_event_callback(self.pinDoorBlock, self.obstacoleDetected)
-        print("AICI")
