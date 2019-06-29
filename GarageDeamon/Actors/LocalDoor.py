@@ -45,3 +45,4 @@ class LocalDoor(ActorBase):
 
         # Callback functions
         GPIO.add_event_callback(self.pinDoorBlock, self.obstacoleDetected)
+        print("AICI")
