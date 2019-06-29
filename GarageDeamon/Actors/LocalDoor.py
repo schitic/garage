@@ -22,10 +22,10 @@ class LocalDoor(ActorBase):
         time.sleep(2)
         GPIO.cleanup(self.commandPin)
 
-    def obstacoleDetected(self):
+    def obstacoleDetected(self, _):
         print("toto")
         try:
-            if GPIO.input(self.pinDoorClosed):
+            if GPIO.input(self.pinDoorBlock):
                 self.obsacole = True
                 self.log.write("Obstacle detected", 'STAUTS',
                                component_id="LocalDoor")
